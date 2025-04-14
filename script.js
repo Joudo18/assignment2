@@ -4,26 +4,26 @@ document.getElementById('translateBtn').addEventListener('click', async () => {
   const sourceLang = document.getElementById('sourceLang').value;
 
   if (!text || !targetLang) {
-    alert('Please provide text .');
-    return;
+      alert('Please provide text .');
+      return;
   }
 
   const response = await fetch('https://assignment2-6lbj.onrender.com', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      text: text,
-      targetLang: targetLang,
-      sourceLang: sourceLang === "" ? null : sourceLang  // Auto-detect if blank
-    })
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+          text: text,
+          targetLang: targetLang,
+          sourceLang: sourceLang === "" ? null : sourceLang  // Auto-detect if blank
+      })
   });
 
   if (response.ok) {
-    const data = await response.json();
-    document.getElementById('translatedText').textContent = data.translatedText;
+      const data = await response.json();
+      document.getElementById('translatedText').textContent = data.translatedText;
   } else {
-    alert('Error during translation');
+      alert('Error during translation');
   }
 });
